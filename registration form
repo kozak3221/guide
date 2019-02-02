@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    td select,
+    td input {
+      width: 150px;
+    }
+
+    label {
+      display: block;
+    }
+
+    .error input,
+    .error textarea {
+      border: 1px solid red;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <form>
+    <table>
+      <tr>
+        <td>Firstname*</td>
+        <td>
+          <input name="from" type="text">
+        </td>
+      </tr>
+      <tr>
+        <td>Lastname*</td>
+        <td>
+          <input name="from1" type="text">
+        </td>
+      </tr>
+      
+      <tr>
+        <td>Birthday*</td>
+        <td>
+          <input name="date" type="date" >
+        </td>
+      </tr>
+      
+       <tr>
+        <td>Gender*</td>
+        <td>
+          <div  >
+    <input type="radio" style="radio" name="radio1"/>
+    <label for="y">Male</label>
+    <input type="radio" class="radio" name="radio1" checked/>
+    <label for="z">Female</label>
+  </div>
+        </td>
+      </tr>
+      
+      
+      <tr>
+        <td>Country*</td>
+        <td>
+          <select name="country">
+            <option></option>
+            <option value="1">USA</option>
+            <option value="2">England</option>
+            <option value="3">France</option>
+          </select>
+        </td>
+      </tr>
+      
+      
+       <tr>
+        <td>Email*</td>
+        <td>
+          <input name="email" type="text" >
+        </td>
+      </tr>
+      
+      <tr>
+        <td>Password*</td>
+        <td>
+          <input name="password" type="password">
+        </td>
+      </tr>
+      <tr>
+        <td>Address*</td>
+        <td>
+          <input name="address" type="text">
+        </td>
+      </tr>
+      
+      <tr>
+        <td>Notes</td>
+        <td>
+          <input name="textaria" type="textaria" style="display:block;width:200px;height:80px">
+        </td>
+      </tr>
+      
+    </table>
+
+  
+
+    <input type="button" onclick="validate(this.form)" value="submit">
+  </form>
+
+  <script>
+   let show=true;
+    function showError(container, errorMessage) {
+     this.show=false;
+      container.className = 'error';
+      var msgElem = document.createElement('div');
+      msgElem.className = "error-message";
+      msgElem.innerHTML = errorMessage;
+      container.appendChild(msgElem);
+    }
+
+    function resetError(container) {
+     
+      container.className = '';
+      if (container.lastChild.className == "error-message") {
+      
+        container.removeChild(container.lastChild);
+      }
+    }
+
+    function validate(form) {
+      var elems = form.elements;
+//firstName
+      resetError(elems.from.parentNode);
+      if (!elems.from.value) {
+         
+        showError(elems.from.parentNode, ' Введіть своє ім\'я');
+      }
+     else  if (!elems.from.value.indexOf("та")) {
+        showError(elems.from.parentNode, ' Символ "та" не дозволено');
+      }else{this.show=true;}
+      
+      //LastName
+      resetError(elems.from1.parentNode);
+      if (!elems.from1.value) {
+        showError(elems.from1.parentNode, ' Введіть своє прізвище');
+      }
+     else  if (!elems.from1.value.indexOf("та")) {
+        showError(elems.from1.parentNode, ' Символ "та" не дозволено');
+      }else{this.show=true;}
+//Date
+ resetError(elems.date.parentNode);
+
+      if (!elems.date.value) {
+        showError(elems.date.parentNode, ' Вкажіть дату народження');
+      }else{this.show=true;}
+      
+      //radio
+    
+    
+    //country
+     resetError(elems.country.parentNode);
+      if (!elems.country.value) {
+        showError(elems.country.parentNode, ' Виберіть країну');
+      }else{this.show=true;}
+     
+    
+    //email
+    resetError(elems.email.parentNode);
+      if (!elems.email.value) {
+        showError(elems.email.parentNode, ' Вкажіть електронну адресу');
+      }  
+      
+      else  if (elems.email.value.indexOf("")) {
+        showError(elems.email.parentNode, ' Username musn t have letters та.');
+      }else{this.show=true;}
+    
+
+//Pass
+      resetError(elems.password.parentNode);
+      if (!elems.password.value) {
+        
+        showError(elems.password.parentNode, ' Вкажіть пароль');
+      } else{this.show=true;}
+      
+      resetError(elems.from1.parentNode);
+      if (!elems.from1.value) {
+        showError(elems.from1.parentNode, 'Вкажіть адресу');
+      }
+     else  if (!elems.from1.value.indexOf("та")) {
+        showError(elems.address.parentNode, 'Символ "та" не дозволено');
+      }else{this.show=true;}
+      if(this.show){
+     alert("!!!")}
+    }
+  </script>
+
+<style>
+  label {
+  float: left;
+  clear: none;
+  display: block;
+  padding: 2px 1em 0 0;
+}
+
+input[type=radio],
+input.radio {
+  float: left;
+  clear: none;
+  margin: 2px 0 0 0px;
+}
+</style>
+</body>
+
+</html>
