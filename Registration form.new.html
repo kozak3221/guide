@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    td select,
+    td input {
+      width: 150px;
+    }
+
+    label {
+      display: block;
+    }
+
+    .error input,
+    .error textarea {
+      border: 1px solid red;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <form>
+    <table>
+      <tr>
+        <td>Firstname*</td>
+        <td>
+          <input name="from" type="text">
+        </td>
+      </tr>
+      <tr>
+        <td>Lastname*</td>
+        <td>
+          <input name="from1" type="text">
+        </td>
+      </tr>
+      
+      <tr>
+        <td>Birthday*</td>
+        <td>
+          <input name="date" type="date" >
+        </td>
+      </tr>
+      
+       <tr>
+        <td>Gender*</td>
+        <td>
+          <div  >
+    <input type="radio" style="radio" name="radio1"/>
+    <label for="y">Male</label>
+    <input type="radio" class="radio" name="radio1" checked/>
+    <label for="z">Female</label>
+  </div>
+        </td>
+      </tr>
+      
+      
+      <tr>
+        <td>Country*</td>
+        <td>
+          <select name="country">
+            <option></option>
+            <option value="1">USA</option>
+            <option value="2">England</option>
+            <option value="3">France</option>
+          </select>
+        </td>
+      </tr>
+      
+      
+       <tr>
+        <td>Email*</td>
+        <td>
+          <input name="email" type="text" >
+        </td>
+      </tr>
+      
+      <tr>
+        <td>Password*</td>
+        <td>
+          <input name="password" type="password">
+        </td>
+      </tr>
+      <tr>
+        <td>Address*</td>
+        <td>
+          <input name="address" type="text">
+        </td>
+      </tr>
+      
+      <tr>
+        <td>Notes</td>
+        <td>
+          <input name="textaria" type="textaria" style="display:block;width:200px;height:80px">
+        </td>
+      </tr>
+      
+    </table>
+
+  
+
+    <input type="button" class="registerbtn" onclick="validate(this.form)" value="submit">
+  </form>
+
+  <script>
+   let show1;
+   let show2;
+   let show3;
+   let show4;
+   let show5;
+   let show6;
+   let show7;
+   let show8;
+    function showError(container, errorMessage) {
+     
+    
+     
+      container.className = 'error';
+      var msgElem = document.createElement('div');
+      msgElem.className = "error-message";
+      msgElem.innerHTML = errorMessage;
+      container.appendChild(msgElem);
+    }
+
+    function resetError(container) {
+    
+    
+      container.className = '';
+      if (container.lastChild.className == "error-message") {
+     
+        container.removeChild(container.lastChild);
+      }
+    }
+
+    function validate(form) {
+      debugger;
+       this.show1=true;
+   this.show2=true;
+this.show3=true;
+this.show4=true;
+this.show5=true;
+this.show6=true;
+this.show7=true;
+
+      var elems = form.elements;
+//firstName
+      resetError(elems.from.parentNode);
+      if (!elems.from.value) {
+           this.show1=false;
+        showError(elems.from.parentNode, ' Введіть своє ім\'я');
+      }
+     else  if (!elems.from.value.indexOf("та")) {
+        this.show1=false;
+        showError(elems.from.parentNode, ' Символ "та" не дозволено');
+      }
+      
+      //LastName
+      resetError(elems.from1.parentNode);
+      if (!elems.from1.value) {
+        let show2=false;
+        showError(elems.from1.parentNode, ' Введіть своє прізвище');
+      }
+     else  if (!elems.from1.value.indexOf("та")) {
+       let show2=false;
+        showError(elems.from1.parentNode, ' Символ "та" не дозволено');
+      }
+ resetError(elems.date.parentNode);
+
+      if (!elems.date.value) {
+         let show7=false;
+        showError(elems.date.parentNode, ' Вкажіть дату народження');
+      }
+      
+      //radio
+    
+    
+    //country
+     resetError(elems.country.parentNode);
+      if (!elems.country.value) {
+          let show3=false;
+        showError(elems.country.parentNode, ' Виберіть країну');
+      }
+     
+    
+    //email
+    resetError(elems.email.parentNode);
+      if (!elems.email.value) {
+          let show4=false;
+        showError(elems.email.parentNode, ' Вкажіть електронну адресу');
+      }  
+      
+      else  if (elems.email.value.indexOf("")) {
+          let show4=false;
+        showError(elems.email.parentNode, ' Username musn t have letters та.');
+      }
+    
+
+//Pass
+      resetError(elems.password.parentNode);
+      if (!elems.password.value) {
+          let show5=false;
+        showError(elems.password.parentNode, ' Вкажіть пароль');
+      } 
+      //adress
+      resetError(elems.address.parentNode);
+      if (!elems.address.value) {
+         let show6=false;
+        showError(elems.address.parentNode, 'Вкажіть адресу');
+      }
+     else   if (!elems.address.value.indexOf("та")) {
+        let show6=false;
+        showError(elems.address.parentNode, 'Символ "та" не дозволено');
+      }
+      debugger;
+      if(this.show1 && this.show2 && this.show3 && this.show4 && this.show5 && this.show6 && this.show7 ){
+     alert("")}
+    }
+  </script>
+
+<style>
+input[type=text], input[type=password],input[type=textaria],input[type=date] ,select {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password] :focus , input[type=textaria] :focus, input[type=date]:focus  , input[type=radio] :focus, select:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit/register button */
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity:1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+
+  label {
+  float: left;
+  clear: none;
+  display: block;
+  padding: 2px 1em 0 0;
+}
+
+input[type=radio],
+input.radio {
+  float: left;
+  clear: none;
+  margin: 2px 0 0 0px;
+}
+</style>
+</body>
+
+</html>
